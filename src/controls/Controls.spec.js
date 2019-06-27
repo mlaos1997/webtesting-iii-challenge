@@ -1,6 +1,7 @@
 // Test away!
 import React from 'react';
-import {render, fireEvent, getByText} from '@testing-library/react';
+import {render, fireEvent } from '@testing-library/react';
+import 'jest-dom/extend-expect';
 import '@testing-library/react/cleanup-after-each'
 
 import Controls from './Controls';
@@ -45,6 +46,9 @@ describe('<Controls />', () => {
             locked={true}/>);
         const lockedButton = getByTestId('lockedButton');
         const closedButton = getByTestId('closedButton');
+
+        expect(lockedButton).toBeDisabled();
+        expect(closedButton).toBeDisabled();
 
         fireEvent.click(lockedButton);
         fireEvent.click(closedButton);
